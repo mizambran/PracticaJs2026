@@ -1,0 +1,17 @@
+Fundamentos y Estructuras (Niveles 1 al 3)
+Nivel 1: Fundamentos. Uso de const para valores inmutables y reglas de negocio. Estas reglas se escriben en UPPER_SNAKE_CASE (ej: const INFLACION_MES = 0.10) para indicar que son constantes duras del sistema. Usamos let exclusivamente para contadores o variables que mutarán en el tiempo.
+Nivel 2: Arrays y Objetos Mutables. Estructuras de datos básicas y métodos que alteran el valor original directamente en la memoria, como push() (agrega al final), pop() (quita el último), shift() (quita el primero) y unshift() (agrega al principio). Ejemplo rápido: const cliente = { nombre: "Super A" }; cliente.activo = true;
+Nivel 3: Lógica Secuencial y Bucles. Uso de iteradores clásicos como for y evaluaciones condicionales (if/else). Se introduce la instrucción continue para saltar ciclos específicos sin romper el bucle entero, ideal para ignorar datos nulos al recorrer un registro de eventos.
+
+Manipulación de Datos (Niveles 4 al 6)
+Nivel 4: Encadenamiento Inmutable. Procesamiento de datos sin destruir la base original usando el operador Spread ([...array]). Se encadenan .filter() para aislar elementos que cumplen una condición, .sort((a,b) => a - b) para ordenar matemáticamente, y .map() para transformar la salida o extraer propiedades específicas.
+Nivel 5: Reducciones (.reduce). El método definitivo para colapsar un array en un único valor. Sirve para hacer sumatorias acumuladas, transformar arrays en objetos diccionarios, o ejecutar el patrón "Ring de Boxeo": buscar un objeto ganador (el más caro, el mayor margen) sin necesidad de ordenar toda la lista, omitiendo el valor inicial del acumulador.
+Nivel 6: Sintaxis Moderna y Magia. Herramientas para simplificar código. Incluye destructuración para extraer datos (const { id } = usuario), el operador Rest (...resto) para empaquetar sobrantes, y defensa con Optional Chaining (?.) y Nullish Coalescing (??). Suma métodos destructores de estructuras como Set (elimina duplicados absolutos) y .flatMap() (aplana arrays anidados).
+
+Arquitectura Defensiva y Patrones (Niveles 7 y 8)
+Nivel 7: Programación Defensiva y Diccionarios. Creación de objetos clave-valor ({ "C1": "Hardware" }) para acceso instantáneo en lugar de usar múltiples condicionales. Se aplica un escudo estricto de validación usando parseFloat combinado con Number.isFinite() para evitar que la basura de las APIs (NaN, nulos, strings vacíos) rompa los cálculos, apoyado por el operador || para inyectar fallbacks ("Proveedor Anónimo").
+Nivel 8: Closures. Funciones que actúan como fábricas o cajas fuertes. Retornan funciones internas que mantienen vivo el acceso a las variables privadas de su función padre, permitiendo crear contadores en memoria o calculadoras de impuestos dinámicas sin exponer la lógica al entorno global.
+
+Negocio y APIs (Niveles 9 y 10)
+Nivel 9: Arquitectura de Negocio. Creación de simuladores mediante pruebas de escritorio. Consiste en cruzar múltiples variables en el tiempo (inflación, depreciación, merma de stock, interés compuesto) usando bucles matemáticos complejos que procesan las reglas antes de devolver un resultado financiero o logístico.
+Nivel 10: APIs. Entorno preparado para el consumo de servicios externos, manejo de Promesas, asincronismo y peticiones HTTP para conectar el código con bases de datos reales.
