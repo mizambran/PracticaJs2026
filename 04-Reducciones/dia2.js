@@ -1,0 +1,165 @@
+// Regla: Usar .reduce() inicializado en {} para sumar cuánta plata entró por cada método de pago. 
+// Resultado esperado: { Efectivo: 20000, MercadoPago: 8000, Tarjeta: 22000 }
+const ticketsVenta = [
+  { metodo: "Efectivo", total: 15000 },
+  { metodo: "MercadoPago", total: 8000 },
+  { metodo: "Efectivo", total: 5000 },
+  { metodo: "Tarjeta", total: 22000 }
+];
+
+const totalPorMedioPago = ticketsVenta.reduce((acc, item) => {
+    const medioDePago = item.metodo 
+    if(acc[medioDePago] === undefined){
+        acc[medioDePago] = 0
+    }
+    acc[medioDePago] += item.total
+    return acc
+}, {})
+//console.log(totalPorMedioPago);
+
+
+
+// Regla: Usar el patrón "Ring de Boxeo" (sin valor inicial) para encontrar y devolver EL OBJETO COMPLETO de la empresa que lleve más meses activa en el sistema.
+const suscripciones = [
+  { empresa: "Local A", mesesActivo: 12 },
+  { empresa: "Super B", mesesActivo: 45 },
+  { empresa: "Kiosco C", mesesActivo: 3 }
+];
+
+const empresaMasAntigua = suscripciones.reduce((acc, item) => {
+    if(item.mesesActivo > acc.mesesActivo){
+        acc = item
+    } 
+    return acc
+})
+
+//console.log(empresaMasAntigua);
+
+
+// Regla: Usar .reduce() inicializado en {} para contar cuántas veces se llamó a cada endpoint.
+// Resultado esperado: { "/api/users": 2, "/api/auth": 2, "/api/products": 1 }
+const peticionesAPI = [
+  "/api/users", 
+  "/api/auth", 
+  "/api/users", 
+  "/api/products", 
+  "/api/auth"
+];
+const peticionPorRuta = peticionesAPI.reduce((acc, item) => {
+    const ruta = item 
+    if(acc[ruta] === undefined){
+        acc[ruta] = 0
+    }
+    acc[ruta] += 1
+    return acc
+}, {})
+//console.log(peticionPorRuta);
+
+
+// Regla: Usar .reduce() inicializado en 0. Sumar el monto si 'esIngreso' es true, restarlo si es false. Devolver el saldo final exacto.
+const movimientos = [
+  { concepto: "Sueldo", monto: 800000, esIngreso: true },
+  { concepto: "Alquiler", monto: 150000, esIngreso: false },
+  { concepto: "Freelance", monto: 120000, esIngreso: true },
+  { concepto: "Supermercado", monto: 90000, esIngreso: false }
+];
+
+const saldoFinal = movimientos.reduce((acc, item) => {
+    if(item.esIngreso){
+        acc += item.monto
+    } else {
+        acc -= item.monto
+    }
+    return acc
+}, 0)
+//console.log(saldoFinal);
+
+
+// Regla: Usar el patrón "Ring de Boxeo" (sin valor inicial) para encontrar el OBJETO COMPLETO del vuelo MÁS BARATO de toda la lista.
+const vuelosDisponibles = [
+  { id: "V1", precio: 1450, escalas: 1 },
+  { id: "V2", precio: 1100, escalas: 2 },
+  { id: "V3", precio: 1800, escalas: 0 },
+  { id: "V4", precio: 1250, escalas: 1 }
+];
+
+const vueloMasBarato = vuelosDisponibles.reduce((acc, item) => {
+    /* if(item.precio < acc.precio){
+        acc = item
+    }
+    return acc */
+    return item.precio < acc.precio ? acc = item : acc
+})
+//console.log(vueloMasBarato);
+
+
+// Regla: Usar .reduce() inicializado en {} para agrupar. OJO: El valor de cada llave debe ser un ARRAY de strings.
+// Resultado esperado: { Quesos: ["Tybo", "Roquefort"], Fiambres: ["Salame"] }
+const stock = [
+  { prod: "Tybo", cat: "Quesos" },
+  { prod: "Salame", cat: "Fiambres" },
+  { prod: "Roquefort", cat: "Quesos" }
+];
+
+const agruparCat = stock.reduce((acc, item) => {
+    const categoria = item.cat
+    if(acc[categoria] === undefined){
+        acc[categoria] = []
+    }
+    acc[categoria].push(item.prod)
+    return acc
+}, {})
+//console.log(agruparCat);
+
+
+// Regla: Usar .reduce() inicializado en 0 para calcular la suma TOTAL de bytes transferidos, PERO SOLO de las peticiones exitosas (status 200).
+const trafico = [
+  { status: 200, bytes: 1500 },
+  { status: 404, bytes: 200 },
+  { status: 200, bytes: 3500 },
+  { status: 500, bytes: 0 }
+];
+
+const totalBytesTransf = trafico.reduce((acc, item) => {
+    if(item.status === 200){
+        acc += item.bytes
+    }
+    return acc
+}, 0)
+
+//console.log(totalBytesTransf);
+
+// Regla: Usar el "Ring de Boxeo" (sin valor inicial) para devolver el OBJETO COMPLETO del vendedor con más ventas cerradas.
+const vendedores = [
+  { nombre: "Ana", cerradas: 15 },
+  { nombre: "Luis", cerradas: 42 },
+  { nombre: "Marcos", cerradas: 28 }
+];
+
+const vendedorMasVtas = vendedores.reduce((acc, item) => {
+    return item.cerradas > acc.cerradas ? acc = item : acc   
+})
+//console.log(vendedorMasVtas);
+
+// Regla: Usar .reduce() para devolver un objeto que cuente la cantidad de votos por categoría.
+// Resultado: { Bueno: 3, Malo: 2, Excelente: 1 }
+const encuestas = ["Bueno", "Malo", "Excelente", "Bueno", "Bueno", "Malo"];
+const encuestaCat = encuestas.reduce((acc, item) => {
+    acc[item] === undefined ? acc[item] = 1 : acc[item] += 1
+    return acc
+}, {})
+//console.log(encuestaCat);
+
+// Regla: Usar "Ring de Boxeo" (sin valor inicial) para devolver el OBJETO COMPLETO de la ruta con la MENOR duración en horas.
+const rutas = [
+  { id: "A1", duracionHoras: 24 },
+  { id: "A2", duracionHoras: 18 },
+  { id: "A3", duracionHoras: 32 }
+];
+
+const rutaMasCorta = rutas.reduce((acc, item) => {
+    return item.duracionHoras < acc.duracionHoras ? acc = item : acc
+})
+//console.log(rutaMasCorta);
+
+
